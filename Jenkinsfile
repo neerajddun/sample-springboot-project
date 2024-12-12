@@ -20,6 +20,11 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage ('Integrated Test') {
+            steps {
+                sh 'mvn verify'
+            }
+        }
         stage ('Build') {
             steps {
                 sh 'mvn clean install'
