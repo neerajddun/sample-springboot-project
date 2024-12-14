@@ -1,5 +1,0 @@
-FROM alpine:3.21
-RUN apk update 
-WORKDIR /app
-COPY . .
-CMD ["sh","echo","hello"]
