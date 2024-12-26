@@ -34,15 +34,16 @@ pipeline {
         }
 
         stage('Docker Build') {
-            steps {
-                script {
-                    // Build and tag the Docker image
-                    sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
-                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID neeraj91/$JOB_NAME:v1.$BUILD_ID'
-                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID neeraj91/$JOB_NAME:latest'
-                }
-            }
+    steps {
+        script {
+            // Build and tag the Docker image
+            sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
+            sh 'docker image tag $JOB_NAME:v1.$BUILD_ID neeraj91/$JOB_NAME:v1.$BUILD_ID'
+            sh 'docker image tag $JOB_NAME:v1.$BUILD_ID neeraj91/$JOB_NAME:latest'
         }
+    }
+}
+
 
         stage('Docker Login and Push') {
             steps {
