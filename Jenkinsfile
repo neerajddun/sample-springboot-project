@@ -61,5 +61,11 @@ pipeline {
                 sh 'echo "Deploy"'
             }
         }
+        stage('Debug Directory') {
+    steps {
+        sh 'pwd'
+        sh 'ls -l'
+    }
+}
     }
 }
