@@ -32,14 +32,14 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage ('Docker Image Build') {
-            steps {
-                script {
-                    sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
-                }
-            }
+        stage('Docker Image Build') {
+    steps {
+        script {
+            // Run docker build with correct context and variable substitution
+            sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
         }
-
+    }
+}
         
         stage('Deploy') {
             steps {
