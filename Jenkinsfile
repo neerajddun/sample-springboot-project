@@ -32,6 +32,13 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+        stage ('Docker Image Build') {
+            steps {
+                script {
+                    sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
+                }
+            }
+        }
 
         
         stage('Deploy') {
