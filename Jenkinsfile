@@ -37,6 +37,8 @@ pipeline {
         script {
             // Run docker build with correct context and variable substitution
               sh 'docker build -t pipeline1.v1:$BUILD_ID .'
+              sh 'docker image tag pipeline1.v1:$BUILD_ID neeraj91/pipeline1.v1:$BUILD_ID'
+              sh 'docker image tag pipeline1.v1:$BUILD_ID neeraj91/pipeline1.v1:latest'
         }
     }
 }
