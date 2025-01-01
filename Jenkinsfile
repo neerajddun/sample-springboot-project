@@ -36,7 +36,7 @@ pipeline {
     steps {
         script {
             // Run docker build with correct context and variable substitution
-            sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
+              sh "docker build -t \"$JOB_NAME:v1.$BUILD_ID\" ."
         }
     }
 }
