@@ -44,19 +44,22 @@ pipeline {
             }
         }
 
-        stage('Docker Push') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials-id', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                        
-                        // Push the Docker image
-                        sh 'docker push neeraj91/pipeline1.v1:$BUILD_ID'
-                        sh 'docker push neeraj91/pipeline1.v1:latest'
-                    }
-                }
+       stage('Docker Push') {
+    steps {
+        script {
+            withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials-id', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                // Secure Docker login
+                sh """
+                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                """
+                
+                // Push the Docker image with both tags
+                sh 'docker push neeraj91/pipeline1.v1:$BUILD_ID'
+                sh 'docker push neeraj91/pipeline1.v1:latest'
             }
         }
+    }
+}
 
         stage('Deploy') {
             steps {
