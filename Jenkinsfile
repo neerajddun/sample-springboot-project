@@ -43,6 +43,11 @@ pipeline {
                 }
             }
         }
+        stage('List Docker Images') {
+    steps {
+        sh 'docker images'
+    }
+}
 
        stage('Docker Push') {
             steps {
