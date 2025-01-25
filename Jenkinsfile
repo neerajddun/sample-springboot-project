@@ -51,8 +51,8 @@ pipeline {
                         sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                         
                         // Push the Docker image
-                        sh 'docker push neeraj91/pipeline1.v1:$BUILD_ID'
-                        sh 'docker push neeraj91/pipeline1.v1:latest'
+                        sh "docker push neeraj91/pipeline1.v1:$BUILD_ID"
+                        sh "docker push neeraj91/pipeline1.v1:latest"
                     }
                 }
             }
